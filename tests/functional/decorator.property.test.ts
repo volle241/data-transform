@@ -25,11 +25,11 @@ describe('@Property decorator', () => {
   it('property "name" is path', async () => {
     expect.assertions(2);
 
-    const data = {
+    const values = {
       contacts: [
         {
-          email: 'test@tt.tt'
-        }
+          email: 'test@tt.tt',
+        },
       ],
     };
 
@@ -38,11 +38,11 @@ describe('@Property decorator', () => {
       email;
     }
 
-    const target = await dataToModel(Model, data);
+    const target = await dataToModel(Model, values);
     const source = await modelToData(Model, target);
 
     expect(target).toEqual({ email: 'test@tt.tt' });
-    expect(source).toEqual(data);
+    expect(source).toEqual(values);
   });
 
   it('property "name" is object', async () => {

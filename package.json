@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "rm -rf ./.build && tsc",
-    "test": "jest"
+    "build": "rm -rf ./.build && tsc",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "jest",
+    "test:debug": "jest --watchAll"
   },
   "dependencies": {
     "moment": "^2.26.0"
@@ -15,13 +17,17 @@
     "@types/jest": "^25.2.3",
     "jest": "^26.0.1",
     "ts-jest": "^26.0.0",
-    "tslint": "^5.20.1",
+    "tslint": "5.16.0",
     "typescript": "^3.9.3"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/volle241/data-transformer.git"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "author": "Vladimir Leonovich",
   "license": "ISC",
   "bugs": {

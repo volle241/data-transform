@@ -11,7 +11,7 @@ export interface Props {
   [key: string]: {
     name?: Name;
     handlers: Handler[];
-  }
+  };
 }
 
 export interface Model {

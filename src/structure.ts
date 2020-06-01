@@ -2,32 +2,32 @@ import { isArray } from './helpers';
 
 interface Result {
   key: string;
-  structure: any;
+  object: any;
 }
 
 export const structure = new class Structure {
-  static parse(structure: any[] | object, path: string): Result {
+  static parse(object: any[] | object, path: string): Result {
     const keys = (path || '').split(/[[\].]/g).filter(Boolean);
     const rounds = keys.length - 1;
 
     for (let index = 0; index < rounds; index++) {
       const property = keys[index];
 
-      if (structure.hasOwnProperty(property)) {
-        structure = structure[property];
+      if (object.hasOwnProperty(property)) {
+        object = object[property];
       } else {
-        structure = {};
+        object = {};
         break;
       }
     }
 
     return {
       key: keys.pop(),
-      structure,
+      object,
     };
   }
 
-  static format(structure: any[] | object, path: string): Result {
+  static format(object: any[] | object, path: string): Result {
     const keys = (path || '').split(/(\w*\S)(\[\d*\])|\./g).filter(Boolean);
     const rounds = keys.length - 1;
 
@@ -35,43 +35,43 @@ export const structure = new class Structure {
       const current = keys[index].replace(/\[(\w+)\]/g, '$1');
       const next = keys[index + 1].replace(/\[(\w+)\]/g, '$1');
 
-      if (structure.hasOwnProperty(current)) {
-        structure = structure[current];
+      if (object.hasOwnProperty(current)) {
+        object = object[current];
         continue;
       }
 
       if (/^\[.*\]$/.test(keys[index])) {
-        structure = isArray(structure) ? structure : Array(Number(current) + 1);
-        structure[current] = {};
-        structure = structure[current];
+        object = isArray(object) ? object : Array(Number(current) + 1);
+        object[current] = {};
+        object = object[current];
         continue;
       }
 
-      structure[current] = /^\[.*\]$/.test(keys[index + 1])
+      object[current] = /^\[.*\]$/.test(keys[index + 1])
         ? Array(Number(next) + 1)
         : {};
-      structure = structure[current];
+      object = object[current];
     }
 
     return {
       key: keys.pop(),
-      structure,
+      object,
     };
   }
 
-  get(structure, path): any {
-    const result = Structure.parse(structure, path);
+  get(object, path): any {
+    const result = Structure.parse(object, path);
 
-    if (!result.structure) {
+    if (!result.object) {
       return undefined;
     }
 
-    return result.structure[result.key];
+    return result.object[result.key];
   }
 
-  set(structure, path, value): void {
-    const result = Structure.format(structure, path);
+  set(object, path, value): void {
+    const result = Structure.format(object, path);
 
-    result.structure[result.key] = value;
+    result.object[result.key] = value;
   }
 }();

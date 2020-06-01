@@ -13,7 +13,7 @@ export const modelToData = async (Model: any, data: any, options?: object): Prom
   if (output === Array) {
     target = [];
 
-    for (let source of data) {
+    for (const source of data) {
       const result = await toSource(props, source);
 
       target.push(result);
@@ -22,7 +22,7 @@ export const modelToData = async (Model: any, data: any, options?: object): Prom
     target = await toSource(props, data);
   }
 
-  for (let { to } of [...handlers].reverse()) {
+  for (const { to } of [...handlers].reverse()) {
     if (isFunction(to)) {
       target = await to({ value: target });
     }
@@ -32,14 +32,14 @@ export const modelToData = async (Model: any, data: any, options?: object): Prom
 };
 
 const toSource = async (props: Props, source: any): Promise<object> => {
-  let target = {};
+  const target = {};
 
   const properties = Object.entries(props).filter(([key, { name }]) => name);
 
-  for (let [key, { handlers, name }] of properties) {
+  for (const [key, { handlers, name }] of properties) {
     let value = source[key];
 
-    for (let { to } of [...handlers].reverse()) {
+    for (const { to } of [...handlers].reverse()) {
       if (isFunction(to)) {
         value = await to({ value, target, source });
       }
@@ -52,8 +52,8 @@ const toSource = async (props: Props, source: any): Promise<object> => {
         });
         break;
       case isObject(name):
-        Object.entries(name).forEach(([key, path]) => {
-          structure.set(target, path, value[key]);
+        Object.entries(name).forEach(([property, path]) => {
+          structure.set(target, path, value[property]);
         });
         break;
       default:

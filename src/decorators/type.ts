@@ -1,6 +1,6 @@
-import { createDecorator } from "./createDecorator";
-import { store } from "../store";
-import { dataToModel, modelToData } from "../index";
+import { createDecorator } from './createDecorator';
+import { store } from '../store';
+import { dataToModel, modelToData } from '../index';
 
 export const Type = createDecorator((Constructor, output) => ({
   from({ value }) {
@@ -22,5 +22,5 @@ export const Type = createDecorator((Constructor, output) => ({
       default:
         return value;
     }
-  }
+  },
 }));

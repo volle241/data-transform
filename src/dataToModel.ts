@@ -10,7 +10,7 @@ export const dataToModel = async (Model: any, data: any, options?: object): Prom
 
   let source = data;
 
-  for (let { from } of handlers) {
+  for (const { from } of handlers) {
     if (isFunction(from)) {
       source = await from({ value: data, meta });
     }
@@ -19,7 +19,7 @@ export const dataToModel = async (Model: any, data: any, options?: object): Prom
   if (output === Array) {
     const result = [];
 
-    for (let item of source) {
+    for (const item of source) {
       const target = await toTarget(props, item, meta);
 
       result.push(target);
@@ -32,9 +32,9 @@ export const dataToModel = async (Model: any, data: any, options?: object): Prom
 };
 
 const toTarget = async (props: Props, source: any, meta: any): Promise<object> => {
-  let target = {};
+  const target = {};
 
-  for (let [key, { handlers, name }] of Object.entries(props)) {
+  for (const [key, { handlers, name }] of Object.entries(props)) {
     let value = getInitialValue(source, name);
 
     for (const { from } of handlers) {
@@ -66,6 +66,3 @@ const getInitialValue = (source: any, name: Name): any => {
 
   return structure.get(source, name);
 };
-
-
-

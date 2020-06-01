@@ -12,7 +12,7 @@ describe('@Enum decorator', () => {
     class Model {
       @Property('eye_color')
       @Enum({
-        '006400': 'green'
+        '006400': 'green',
       })
       eye;
     }
