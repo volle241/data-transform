@@ -6,21 +6,6 @@
     "module": "commonjs",
     "target": "es6",
     "outDir": "./dist"
-
-
-    /*
-    "module": "commonjs",
-        "declaration": true,
-        "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "target": "es2017",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "baseUrl": "./",
-        "incremental": true,
-        "resolveJsonModule": true
-        */
   },
   "include": [
     "src/**/*"

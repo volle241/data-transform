@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/volle241/data-transform.git"
+    "url": "git+https://github.com/volle241/data-transformer.git"
   },
   "author": "Vladimir Leonovich",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/volle241/data-transform/issues"
+    "url": "https://github.com/volle241/data-transformer/issues"
   },
-  "homepage": "https://github.com/volle241/data-transform#readme"
+  "homepage": "https://github.com/volle241/data-transformer#readme"
 }
