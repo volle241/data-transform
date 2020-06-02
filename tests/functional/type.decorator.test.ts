@@ -50,7 +50,7 @@ describe('@Type decorator', () => {
     expect(typeof target.value).toBe('boolean');
   });
 
-  it('property "type" is Transformer, Transformer type is "object"', async () => {
+  it('property "type" is Transformer, transforming data is "object"', async () => {
     expect.assertions(2);
 
     const data = {
@@ -81,7 +81,7 @@ describe('@Type decorator', () => {
     expect(source).toEqual(data);
   });
 
-  it('property "type" is Transformer, Transformer type is "array"', async () => {
+  it('property "type" is Transformer, transforming data is "array"', async () => {
     expect.assertions(2);
 
     const data = {

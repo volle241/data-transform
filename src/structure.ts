@@ -59,6 +59,12 @@ export const structure = new class Structure {
     };
   }
 
+  parsePath(value: string, withBrackets?: boolean) {
+    const regexp = withBrackets ? /(\w*\S)(\[\d*\])|\./g : /[[\].]/g;
+
+    return (value || '').split(regexp).filter(Boolean);
+  }
+
   get(object, path): any {
     const result = Structure.parse(object, path);
 

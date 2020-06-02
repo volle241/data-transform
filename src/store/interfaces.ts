@@ -5,6 +5,8 @@ export type Name = string[] | { [key: string]: string } | string;
 export interface Handler {
   from: Parser;
   to: Parser;
+  type?: any;
+  options?: any[];
 }
 
 export interface Props {

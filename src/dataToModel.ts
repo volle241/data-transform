@@ -19,7 +19,7 @@ export const dataToModel = async (Model: any, data: any, options?: object): Prom
   if (output === Array) {
     const result = [];
 
-    for (const item of source) {
+    for (const item of [].concat(source)) {
       const target = await toTarget(props, item, meta);
 
       result.push(target);
@@ -31,7 +31,7 @@ export const dataToModel = async (Model: any, data: any, options?: object): Prom
   return toTarget(props, source, meta);
 };
 
-const toTarget = async (props: Props, source: any, meta: any): Promise<object> => {
+const toTarget = async (props: Props, source: object, meta: any): Promise<object> => {
   const target = {};
 
   for (const [key, { handlers, name }] of Object.entries(props)) {

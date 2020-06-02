@@ -1,4 +1,5 @@
 import { createDecorator } from './createDecorator';
+import { isNumeric } from '../helpers';
 
 export const Enum = createDecorator(map => ({
   from: ({ value }) => map[value],

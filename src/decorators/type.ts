@@ -1,9 +1,10 @@
-import { createDecorator } from './createDecorator';
+import { DECORATOR_TYPES, createDecorator } from './createDecorator';
 import { store } from '../store';
 import { dataToModel, modelToData } from '../index';
 
 export const Type = createDecorator((Constructor, output) => ({
-  from({ value }) {
+  type: DECORATOR_TYPES.TYPE,
+  from: ({ value }) => {
     switch (true) {
       case [Number, Boolean, String].includes(Constructor):
         return Constructor(value);
@@ -13,7 +14,7 @@ export const Type = createDecorator((Constructor, output) => ({
         return value;
     }
   },
-  to({ value }) {
+  to: ({ value }) => {
     switch (true) {
       case [Number, Boolean, String].includes(Constructor):
         return Constructor(value);
