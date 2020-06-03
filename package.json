@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./.build && tsc",
+    "prepublish": "npm run build",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:debug": "jest --watchAll"

@@ -1,7 +1,8 @@
 import * as moment from 'moment';
-import { createDecorator } from './createDecorator';
+import { createDecorator, DECORATOR_TYPES } from './createDecorator';
 
 export const Date = createDecorator(props => ({
+  type: DECORATOR_TYPES,
   from({ value }) {
     const date = moment(value, props.from).format(props.to);
     return ['x', 'X'].includes(props.to) ? Number(date) : date;
