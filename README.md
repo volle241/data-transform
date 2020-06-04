@@ -34,7 +34,7 @@ const users = [
 ```
 And a transformer class to convert data to a flat presentation format
 ```javascript
-import { Property, Transform } from 'data-transformer/decorators';
+import { Property, Transform } from 'data-transformer';
 
 class User {
   @Property('user_id')
@@ -131,9 +131,9 @@ const data = {
   docNumber: '123456'
 };
 ```
+
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property } from 'data-transformer/decorators';
+import { dataToModel, Property } from 'data-transformer';
 
 class User {
   @Property('user_id')
@@ -154,7 +154,9 @@ class User {
 
 const user = await dataToModel(User, data);
 ```
+
 `user` result is:
+
 ```javascript
 {
   id: 123,
@@ -166,6 +168,7 @@ const user = await dataToModel(User, data);
   passport: ['ZZ', '123456'],
 }
 ```
+
 #### @Enum
 Return value from map.
 ```javascript
@@ -174,8 +177,7 @@ const data = {
 };
 ```
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property, Enum } from 'data-transformer/decorators';
+import { dataToModel, Property, Enum } from 'data-transformer';
 
 class User {
   @Property('role')
@@ -202,8 +204,7 @@ const data = {
 };
 ```
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property, Date } from 'data-transformer/decorators';
+import { dataToModel, Property, Date } from 'data-transformer';
 
 class User {
   @Property('create_date')
@@ -245,8 +246,7 @@ const data = {
 };
 ```
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property, Type } from 'data-transformer/decorators';
+import { dataToModel, Property, Type } from 'data-transformer';
 
 class Contact {
    @Property('phone')
@@ -326,8 +326,7 @@ const data = {
 };
 ```
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property, Transform } from 'data-transformer/decorators';
+import { dataToModel, Property, Transform } from 'data-transformer';
 
 class User {
   @Property('document')
@@ -366,7 +365,7 @@ Cause properties without `@Property` decorator - are virtual.
 }
 ```
 ## Class decorators
-#### @ClassTransform
+#### @DataTransform
 Used for top-level data transformations. For transformations you should declare one or both optional methods `from`, `to`. 
 Method `from` is called before all properties transformations. 
 Method `to` is called after all properties transformations. 
@@ -389,10 +388,9 @@ const data = [
 ];
 ```
 ```javascript
-import { dataToModel } from 'data-transformer';
-import { Property, ClassTransform, Type} from 'data-transformer/decorators';
+import { dataToModel, Property, DataTransform, Type } from 'data-transformer';
 
-@ClassTransform({
+@DataTransform({
   from: ({ value }) => value.filter(({ price }) => price >= 100)
 })
 class Product {
@@ -424,7 +422,7 @@ Both methods еakes three arguments:
 * initial data, is required
 * optional parameters, is optional
     * output - is optional, accept only one value - `Array`. Necessary if the initial data is an array.
-    * meta - helper, custom object which will be available in methods `from` and `to` decorators `@Transform` and `@ClassTransform`. 
+    * meta - helper, custom object which will be available in methods `from` and `to` decorators `@Transform` and `@DataTransform`. 
 ```javascript
 import { dataToModel, modelToData } from 'data-transformer';
 
@@ -438,8 +436,7 @@ const source = await modelToData(Transformer, target, { output: Array, meta: { .
 #### findPath
 Synchronous method for finding abstract path. Correctly work only with `@Property`(key is `string`) and `@Type` decorators
 ```javascript
-import { findPath } from 'data-transformer';
-import { Property, Type} from 'data-transformer/decorators';
+import { findPath, Property, Type } from 'data-transformer';
 
 class Friend {
   @Property('first_name')
@@ -465,7 +462,7 @@ const path = findPath(User, 'friends_list[0].first_name');
 Method that allows you to create your custom decorator, with your custom logic.
 `createDecorator`
 ```javascript
-import { createDecorator } from './createDecorator';
+import { createDecorator } from 'data-transformer';
 
 export const Custom = createDecorator((option1, option2, optionN) => ({
   from({ value, target, source, meta }) {
@@ -492,7 +489,7 @@ const data = {
 };
 ```
 ```javascript
-import { Property, Date } from 'data-transformer/decorators';
+import { Property, Date } from 'data-transformer';
 
 class User {
   @Property({

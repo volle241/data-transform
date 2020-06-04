@@ -1,5 +1,4 @@
-import { Property, Transform, Date, Enum } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property, Transform, Date, Enum } from '../../src';
 
 describe('Transformation model inheritance', () => {
   const data = {

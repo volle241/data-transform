@@ -1,5 +1,4 @@
-import { Property, Transform } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property, Transform } from '../../src';
 
 describe('@Transform decorator', () => {
   const data = {

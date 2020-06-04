@@ -1,6 +1,6 @@
 import { createClassDecorator } from './createDecorator';
 
-export const ClassTransform = createClassDecorator(({ from, to }) => ({
+export const DataTransform = createClassDecorator(({ from, to }) => ({
   from: ({ value, ...props }) => {
     if (typeof from === 'function') {
       return from({ value, ...props });

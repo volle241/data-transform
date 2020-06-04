@@ -1,5 +1,4 @@
-import { Property, ClassTransform } from '../../src/decorators';
-import { dataToModel } from '../../src';
+import { dataToModel, Property, DataTransform } from '../../src';
 
 describe('@ClassTransform decorator', () => {
   const data = [
@@ -18,7 +17,7 @@ describe('@ClassTransform decorator', () => {
   ];
 
   it('simple transformation', async () => {
-    @ClassTransform({
+    @DataTransform({
       from: ({ value }) => value.filter(({ price }) => price >= 10),
     })
     class Model {
@@ -32,7 +31,7 @@ describe('@ClassTransform decorator', () => {
   });
 
   it('mutable transformation', async () => {
-    @ClassTransform({
+    @DataTransform({
       from: ({ value }) => value
         .map(item => ({
           amount: item.price * item.quantity,

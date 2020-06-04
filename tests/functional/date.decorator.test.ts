@@ -1,5 +1,4 @@
-import { Property, Date } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property, Date  } from '../../src';
 
 describe('@Date decorator', () => {
   const data = {

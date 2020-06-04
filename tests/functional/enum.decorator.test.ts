@@ -1,5 +1,4 @@
-import { Property, Enum } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property, Enum } from '../../src';
 
 describe('@Enum decorator', () => {
   const data = {

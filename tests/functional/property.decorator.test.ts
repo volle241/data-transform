@@ -1,5 +1,4 @@
-import { Property } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property } from '../../src';
 
 describe('@Property decorator', () => {
   const data = {

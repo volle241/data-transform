@@ -1,5 +1,4 @@
-import { Property, Type } from '../../src/decorators';
-import { dataToModel, modelToData } from '../../src';
+import { dataToModel, modelToData, Property, Type } from '../../src';
 
 describe('@Type decorator', () => {
   it('property "type" is String', async () => {

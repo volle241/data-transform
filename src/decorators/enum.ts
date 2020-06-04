@@ -1,6 +1,10 @@
 import { createDecorator, DECORATOR_TYPES } from './createDecorator';
 
-export const Enum = createDecorator(map => ({
+interface EnumMap {
+  [key: string]: any;
+}
+
+export const Enum: (map: EnumMap) => void = createDecorator(map => ({
   type: DECORATOR_TYPES.ENUM,
   from: ({ value }) => map[value],
   to: ({ value }) => {
@@ -8,3 +12,9 @@ export const Enum = createDecorator(map => ({
     return result;
   },
 }));
+
+const test = (ops: StringConstructor | NumberConstructor | BooleanConstructor) => '';
+
+test(String);
+test(Number);
+test(Boolean);
